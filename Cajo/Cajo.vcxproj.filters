@@ -34,6 +34,7 @@
     <ClInclude Include="src\Cajo\Log.h">
       <Filter>Cajo</Filter>
     </ClInclude>
+    <ClInclude Include="src\cajopch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Cajo\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Cajo\Log.cpp">
       <Filter>Cajo</Filter>
     </ClCompile>
+    <ClCompile Include="src\cajopch.cpp" />
   </ItemGroup>
 </Project>

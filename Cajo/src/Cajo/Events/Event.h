@@ -2,9 +2,6 @@
 
 #include "Cajo\Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Cajo {
 
 	// At the time, events are blocking

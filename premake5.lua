@@ -18,6 +18,9 @@ project "Cajo"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "cajopch.h"
+	pchsource "Cajo/src/cajopch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

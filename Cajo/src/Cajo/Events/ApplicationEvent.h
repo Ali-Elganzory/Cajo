@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Cajo {
 
 	class CAJO_API WindowResizeEvent : public Event
