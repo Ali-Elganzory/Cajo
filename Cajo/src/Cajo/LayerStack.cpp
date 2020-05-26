@@ -4,9 +4,9 @@
 
 namespace Cajo {
 
-	LayerStack::LayerStack()
+	LayerStack::LayerStack() 
 	{
-		m_LayerInsert = m_Layers.begin();
+		m_LayerInsert = m_Layers.begin(); 
 	}
 
 

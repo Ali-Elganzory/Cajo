@@ -48,7 +48,7 @@ project "Cajo"
 
 	filter "system:windows"
 		cppdialect "c++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -64,18 +64,15 @@ project "Cajo"
 
 	filter "configurations:Debug"
 		defines "CAJO_DEBUG"
-		buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "CAJO_RELEASE"
-		buildoptions "/MD"
-		symbols "On"
+		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CAJO_DIST"
-		buildoptions "/MD"
-		symbols "On"
+		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
@@ -99,7 +96,7 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "c++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -118,8 +115,8 @@ project "Sandbox"
 	
 	filter "configurations:Release"
 		defines "CAJO_RELEASE"
-		symbols "On"
+		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CAJO_DIST"
-		symbols "On"
+		optimize "On"
