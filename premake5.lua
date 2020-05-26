@@ -64,14 +64,17 @@ project "Cajo"
 
 	filter "configurations:Debug"
 		defines "CAJO_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "CAJO_RELEASE"
+		buildoptions "/MD"
 		symbols "On"
 
 	filter "configurations:Dist"
 		defines "CAJO_DIST"
+		buildoptions "/MD"
 		symbols "On"
 
 project "Sandbox"

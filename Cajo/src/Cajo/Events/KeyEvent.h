@@ -13,7 +13,7 @@ namespace Cajo {
 
 	protected:
 		KeyEvent(int keyCode)
-			: m_keyCode(keyCode) {}
+			: m_KeyCode(keyCode) {}
 
 		int m_KeyCode;
 	};

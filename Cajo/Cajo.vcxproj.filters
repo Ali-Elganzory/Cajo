@@ -37,6 +37,12 @@
     <ClInclude Include="src\Cajo\Events\MouseEvent.h">
       <Filter>Cajo\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Cajo\Layer.h">
+      <Filter>Cajo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cajo\LayerStack.h">
+      <Filter>Cajo</Filter>
+    </ClInclude>
     <ClInclude Include="src\Cajo\Log.h">
       <Filter>Cajo</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Cajo\Application.cpp">
+      <Filter>Cajo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cajo\Layer.cpp">
+      <Filter>Cajo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cajo\LayerStack.cpp">
       <Filter>Cajo</Filter>
     </ClCompile>
     <ClCompile Include="src\Cajo\Log.cpp">
