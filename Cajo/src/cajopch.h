@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Cajo/Log.h"
+
 #ifdef CAJO_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // CAJO_PLATFORM_WINDOWS

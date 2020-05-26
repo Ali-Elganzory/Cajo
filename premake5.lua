@@ -10,6 +10,12 @@ workspace "Cajo"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include dirs relative to root dir (solution dir)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Cajo/vendor/GLFW/include"
+
+include "Cajo/vendor/GLFW"
+
 project "Cajo"
 	location "Cajo"
 	kind "SharedLib"
@@ -30,7 +36,14 @@ project "Cajo"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

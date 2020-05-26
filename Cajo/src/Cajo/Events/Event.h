@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cajopch.h"
+
 #include "Cajo\Core.h"
 
 namespace Cajo {
