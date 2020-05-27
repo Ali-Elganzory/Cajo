@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include dirs relative to root dir (solution dir)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Cajo/vendor/GLFW/include"
+IncludeDir["Glad"] = "Cajo/vendor/Glad/include"
 
 include "Cajo/vendor/GLFW"
+include "Cajo/vendor/Glad"
 
 project "Cajo"
 	location "Cajo"
@@ -37,12 +39,14 @@ project "Cajo"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Cajo"
 		defines
 		{
 			"CAJO_PLATFORM_WINDOWS",
-			"CAJO_BUILD_DLL"
+			"CAJO_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
