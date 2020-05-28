@@ -24,6 +24,7 @@ project "Cajo"
 	location "Cajo"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -56,7 +57,6 @@ project "Cajo"
 
 	filter "system:windows"
 		cppdialect "c++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -73,20 +73,24 @@ project "Cajo"
 
 	filter "configurations:Debug"
 		defines "CAJO_DEBUG"
+		runtime "Debug"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "CAJO_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CAJO_DIST"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -105,7 +109,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "c++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -120,12 +123,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "CAJO_DEBUG"
+		runtime "Debug"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "CAJO_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CAJO_DIST"
+		runtime "Release"
 		optimize "On"
