@@ -5,7 +5,7 @@ class Sandbox : public Cajo::Application
 public:
 	Sandbox()
 	{
-
+		PushOverlay(new Cajo::ImGuiLayer());
 	}
 
 	~Sandbox()

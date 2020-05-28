@@ -4,3 +4,6 @@
 [submodule "Cajo/vendor/GLFW"]
 	path = Cajo/vendor/GLFW
 	url = https://github.com/Ali-Elganzory/glfw
+[submodule "Cajo/vendor/imgui"]
+	path = Cajo/vendor/imgui
+	url = https://github.com/Ali-Elganzory/imgui
