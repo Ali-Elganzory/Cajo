@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Cajo/vendor/GLFW/include"
 IncludeDir["Glad"] = "Cajo/vendor/Glad/include"
 IncludeDir["ImGui"] = "Cajo/vendor/ImGui"
+IncludeDir["glm"] = "Cajo/vendor/glm"
 
 include "Cajo/vendor/GLFW"
 include "Cajo/vendor/Glad"
@@ -37,6 +38,8 @@ project "Cajo"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -45,7 +48,8 @@ project "Cajo"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -105,7 +109,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Cajo/vendor/spdlog/include",
-		"Cajo/src"
+		"Cajo/src",
+		"%{IncludeDir.glm}"
 	}
 
 	filter "system:windows"

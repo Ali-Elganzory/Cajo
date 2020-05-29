@@ -7,7 +7,6 @@
 
 #include <Glad/glad.h>
 
-
 namespace Cajo {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -44,7 +43,7 @@ namespace Cajo {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		
-		CAJO_CORE_TRACE("{0}", e);
+		//CAJO_CORE_TRACE("{0}", e);
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
 			(*--it)->OnEvent(e);
@@ -62,9 +61,6 @@ namespace Cajo {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
-
-			auto [x, y] = Input::GetMousePosition();
-			CAJO_CORE_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}

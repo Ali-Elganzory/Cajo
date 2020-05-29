@@ -7,3 +7,6 @@
 [submodule "Cajo/vendor/imgui"]
 	path = Cajo/vendor/imgui
 	url = https://github.com/Ali-Elganzory/imgui
+[submodule "Cajo/vendor/glm"]
+	path = Cajo/vendor/glm
+	url = https://github.com/g-truc/glm
