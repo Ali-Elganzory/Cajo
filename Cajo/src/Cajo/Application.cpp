@@ -1,10 +1,12 @@
 #include "cajopch.h"
 
 #include "Application.h"
+#include "Input.h"
 
 #include "Cajo/Log.h"
 
 #include <Glad/glad.h>
+
 
 namespace Cajo {
 
@@ -60,6 +62,9 @@ namespace Cajo {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			auto [x, y] = Input::GetMousePosition();
+			CAJO_CORE_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}
