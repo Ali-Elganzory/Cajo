@@ -26,7 +26,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Cajo::ImGuiLayer());
+		//PushOverlay(new Cajo::ImGuiLayer());
 	}
 
 	~Sandbox()
