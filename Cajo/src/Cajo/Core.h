@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef CAJO_PLATFORM_WINDOWS
-	#ifdef CAJO_BUILD_DLL 
-		#define CAJO_API __declspec(dllexport)
+	#if CAJO_DYNAMIC_LINK
+		#ifdef CAJO_BUILD_DLL 
+			#define CAJO_API __declspec(dllexport)
+		#else
+			#define CAJO_API __declspec(dllimport)
+		#endif
 	#else
-		#define CAJO_API __declspec(dllimport)
+		#define CAJO_API
 	#endif
 #else
 	#error Cajo only supports Windows.
