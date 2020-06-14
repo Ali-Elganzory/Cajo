@@ -6,7 +6,7 @@
 #include "Cajo/Events/MouseEvent.h"
 #include "Cajo/Events/KeyEvent.h"
 
-#include <Glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Cajo {
 
@@ -38,7 +38,9 @@ namespace Cajo {
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
+
 		CAJO_CORE_INFO("Creating window {0}: ({1}, {2})", props.Title, props.Width, props.Height);
+
 
 		if (!s_GLFWInitialized)
 		{
@@ -52,9 +54,10 @@ namespace Cajo {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		CAJO_CORE_ASSERT(status, "Couldn't initialize Glad!");
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -162,7 +165,7 @@ namespace Cajo {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
