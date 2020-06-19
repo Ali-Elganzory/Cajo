@@ -9,6 +9,8 @@
 
 #include "Cajo/ImGui/ImGuiLayer.h"
 
+#include "Cajo/Renderer/Shader.h"
+
 
 namespace Cajo {
 
@@ -41,6 +43,8 @@ namespace Cajo {
 		unsigned int m_VertexArray;
 		unsigned int m_VertexBuffer;
 		unsigned int m_IndexBuffer;
+
+		std::unique_ptr<Shader> m_Shader;
 
 	private:
 		static Application* s_Instance;
