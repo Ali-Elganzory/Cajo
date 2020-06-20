@@ -2,7 +2,8 @@
 
 namespace Cajo {
 
-	enum class ShaderDataType {
+	enum class ShaderDataType 
+	{
 		None = 0, Float, Float2, Float3, Float4, Mat3, Mat4, Int, Int2, Int3, Int4, Bool
 	};
 
@@ -27,7 +28,8 @@ namespace Cajo {
 		return 0;
 	}
 
-	struct BufferLayoutElement {
+	struct BufferLayoutElement 
+	{
 		std::string Name;
 		ShaderDataType Type;
 		uint32_t Size;
@@ -61,7 +63,8 @@ namespace Cajo {
 		}
 	};
 
-	class BufferLayout {
+	class BufferLayout 
+	{
 	public:
 		BufferLayout() {}
 		BufferLayout(std::initializer_list<BufferLayoutElement> elements)
@@ -96,7 +99,8 @@ namespace Cajo {
 		uint32_t m_Stride;
 	};
 
-	class VertexBuffer {
+	class VertexBuffer 
+	{
 	public:
 		static VertexBuffer* Create(float* vertices, uint32_t size);
 		virtual ~VertexBuffer() {};
@@ -108,7 +112,8 @@ namespace Cajo {
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 	};
 
-	class IndexBuffer {
+	class IndexBuffer 
+	{
 	public:
 		static IndexBuffer* Create(uint32_t* indices, uint32_t size);
 		virtual ~IndexBuffer() {};

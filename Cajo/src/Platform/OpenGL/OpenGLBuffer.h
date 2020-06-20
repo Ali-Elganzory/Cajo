@@ -4,7 +4,8 @@
 
 namespace Cajo {
 
-	class OpenGLVertexBuffer : public VertexBuffer {
+	class OpenGLVertexBuffer : public VertexBuffer 
+	{
 	public:
 		OpenGLVertexBuffer(float* vertices, uint32_t size);
 		virtual ~OpenGLVertexBuffer() override;
@@ -20,7 +21,8 @@ namespace Cajo {
 		BufferLayout m_Layout;
 	};
 
-	class OpenGLIndexBuffer : public IndexBuffer {
+	class OpenGLIndexBuffer : public IndexBuffer 
+	{
 	public:
 		OpenGLIndexBuffer(uint32_t* indices, uint32_t count);
 		virtual ~OpenGLIndexBuffer() override;

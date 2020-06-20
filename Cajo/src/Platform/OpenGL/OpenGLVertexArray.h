@@ -4,7 +4,8 @@
 
 namespace Cajo {
 
-	class OpenGLVertexArray : public VertexArray {
+	class OpenGLVertexArray : public VertexArray 
+	{
 	public:
 		OpenGLVertexArray();
 		virtual ~OpenGLVertexArray();

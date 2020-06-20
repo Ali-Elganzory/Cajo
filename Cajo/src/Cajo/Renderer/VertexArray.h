@@ -4,7 +4,8 @@
 
 namespace Cajo {
 
-	class VertexArray {
+	class VertexArray 
+	{
 	public:
 		static VertexArray* Create();
 		virtual ~VertexArray() {}

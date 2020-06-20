@@ -12,8 +12,8 @@ namespace Cajo {
 	{
 		switch (Renderer::GetCurrentAPI())
 		{
-			case RendererAPI::None:      CAJO_CORE_ASSERT(false, "RendererAPI::None is not supported yet."); return nullptr;
-			case RendererAPI::OpenGL:    return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::API::None:      CAJO_CORE_ASSERT(false, "RendererAPI::None is not supported yet."); return nullptr;
+			case RendererAPI::API::OpenGL:    return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		CAJO_CORE_ASSERT(false, "Unknown RendererAPI!")
@@ -24,8 +24,8 @@ namespace Cajo {
 	{
 		switch (Renderer::GetCurrentAPI())
 		{
-		case RendererAPI::None:      CAJO_CORE_ASSERT(false, "RendererAPI::None is not supported yet."); return nullptr;
-		case RendererAPI::OpenGL:    return new OpenGLIndexBuffer(indices, size);
+		case RendererAPI::API::None:      CAJO_CORE_ASSERT(false, "RendererAPI::None is not supported yet."); return nullptr;
+		case RendererAPI::API::OpenGL:    return new OpenGLIndexBuffer(indices, size);
 		}
 
 		CAJO_CORE_ASSERT(false, "Unknown RendererAPI!")

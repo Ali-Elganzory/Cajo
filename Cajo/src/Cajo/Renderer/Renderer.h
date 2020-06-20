@@ -1,19 +1,19 @@
 #pragma once
 
+#include "RenderCommand.h"
+
 namespace Cajo {
 
-	enum class RendererAPI 
+	class Renderer 
 	{
-		None = 0, OpenGL = 1,
-	};
-
-	class Renderer {
 	public:
-		inline static RendererAPI GetCurrentAPI() { return s_RendererAPI; };
-		inline static RendererAPI SetCurrentAPI(RendererAPI api) { return s_RendererAPI = api; };
+		static void BeginScene();
+		static void EndScene();
 
-	private:
-		static RendererAPI s_RendererAPI;
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetCurrentAPI() { return RendererAPI::GetCurrentAPI(); };
+		inline static void SetCurrentAPI(RendererAPI::API api) { RendererAPI::SetCurrentAPI(api); };
 	};
 
 }

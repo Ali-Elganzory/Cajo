@@ -6,7 +6,8 @@ struct GLFWwindow;
 
 namespace Cajo {
 
-	class OpenGLContext : public GraphicsContext {
+	class OpenGLContext : public GraphicsContext 
+	{
 	public:
 		OpenGLContext(GLFWwindow* windowHandle);
 

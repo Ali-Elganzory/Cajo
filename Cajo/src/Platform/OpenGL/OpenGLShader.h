@@ -4,7 +4,8 @@
 
 namespace Cajo {
 
-	class OpenGLShader : public Shader {
+	class OpenGLShader : public Shader 
+	{
 	public:
 		OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource);
 		virtual ~OpenGLShader() override;
