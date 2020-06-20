@@ -16,7 +16,7 @@ namespace Cajo {
 			case ShaderDataType::Float4:   return GL_FLOAT;
 			case ShaderDataType::Mat3:     return GL_FLOAT;
 			case ShaderDataType::Mat4:     return GL_FLOAT;
-			case ShaderDataType::Int:	     return GL_INT;
+			case ShaderDataType::Int:	   return GL_INT;
 			case ShaderDataType::Int2:     return GL_INT;
 			case ShaderDataType::Int3:     return GL_INT;
 			case ShaderDataType::Int4:     return GL_INT;
@@ -30,6 +30,11 @@ namespace Cajo {
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
 		glCreateVertexArrays(1, &m_RendererID);
+	}
+
+	OpenGLVertexArray::~OpenGLVertexArray()
+	{
+		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const
