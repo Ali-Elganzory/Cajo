@@ -6,6 +6,7 @@
 - Event system
 - Layer stack
 - Platform agnostic Renderer API. Only, OpenGL API specific implementation is supported. <br /><br />
+- Orthographic camera
 
 ### Photos
 - First rectangle using shaders
