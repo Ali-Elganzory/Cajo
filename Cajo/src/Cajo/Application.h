@@ -9,15 +9,9 @@
 
 #include "Cajo/ImGui/ImGuiLayer.h"
 
-#include "Cajo/Renderer/Shader.h"
-#include "Cajo/Renderer/Buffer.h"
-#include "Cajo/Renderer/VertexArray.h"
-
-#include "Cajo/Renderer/Camera.h"
-
 namespace Cajo {
 
-	class CAJO_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -35,7 +29,6 @@ namespace Cajo {
 		inline static Application& Get() { return *s_Instance; }
 
 	private:
-		bool MoveCamera(KeyPressedEvent& e);
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
@@ -43,11 +36,6 @@ namespace Cajo {
 		bool m_Running = true;
 
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		OrthographicCamera m_Camera;
 
 	private:
 		static Application* s_Instance;

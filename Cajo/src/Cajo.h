@@ -12,6 +12,17 @@
 
 #include "Cajo/ImGui/ImGuiLayer.h"
 
+// --------		Renderer		--------
+#include "Cajo/Renderer/Renderer.h"
+#include "Cajo/Renderer/RenderCommand.h"
+
+#include "Cajo/Renderer/Buffer.h"
+#include "Cajo/Renderer/Shader.h"
+#include "Cajo/Renderer/VertexArray.h"
+
+#include "Cajo/Renderer/Camera.h"
+// -------------------------------------
+
 // --------		Entry Point		--------
 #include "Cajo/EntryPoint.h"
 // -------------------------------------
