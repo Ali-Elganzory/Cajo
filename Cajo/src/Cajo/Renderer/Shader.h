@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glm/glm.hpp>
+
 namespace Cajo {
 
 	class Shader 
@@ -10,6 +12,8 @@ namespace Cajo {
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
+
+		virtual void UploadUniformMat4(const std::string& uniform, const glm::mat4& mat4) = 0;
 	};
 
 }

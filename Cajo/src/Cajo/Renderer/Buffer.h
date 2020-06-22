@@ -66,7 +66,7 @@ namespace Cajo {
 	class BufferLayout 
 	{
 	public:
-		BufferLayout() {}
+		BufferLayout() = default;
 		BufferLayout(std::initializer_list<BufferLayoutElement> elements)
 			: m_Elements(elements)
 		{
@@ -103,7 +103,7 @@ namespace Cajo {
 	{
 	public:
 		static VertexBuffer* Create(float* vertices, uint32_t size);
-		virtual ~VertexBuffer() {};
+		virtual ~VertexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
@@ -116,7 +116,7 @@ namespace Cajo {
 	{
 	public:
 		static IndexBuffer* Create(uint32_t* indices, uint32_t size);
-		virtual ~IndexBuffer() {};
+		virtual ~IndexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;

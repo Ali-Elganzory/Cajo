@@ -9,10 +9,5 @@ namespace Cajo {
 	{
 
 	}
-
-	Layer::~Layer()
-	{
-
-	}
 	
 }

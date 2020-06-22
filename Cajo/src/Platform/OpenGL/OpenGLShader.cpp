@@ -3,6 +3,7 @@
 #include "OpenGLShader.h"
 
 #include <Glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace Cajo {
 
@@ -105,6 +106,12 @@ namespace Cajo {
 	void OpenGLShader::Unbind() const
 	{
 		glUseProgram(0);
+	}
+
+	void OpenGLShader::UploadUniformMat4(const std::string& uniform, const glm::mat4& mat4)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4));
 	}
 
 }

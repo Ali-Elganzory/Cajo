@@ -22,15 +22,15 @@ namespace Cajo {
 }
 
 // Core log macros
-#define CAJO_CORE_TRACE(...)   ::Cajo::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define CAJO_CORE_INFO(...)    ::Cajo::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define CAJO_CORE_WARN(...)    ::Cajo::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define CAJO_CORE_ERROR(...)   ::Cajo::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define CAJO_CORE_FATAL(...)   ::Cajo::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define CAJO_CORE_TRACE(...)      ::Cajo::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define CAJO_CORE_INFO(...)       ::Cajo::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define CAJO_CORE_WARN(...)       ::Cajo::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define CAJO_CORE_ERROR(...)      ::Cajo::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define CAJO_CORE_Critical(...)   ::Cajo::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
-#define CAJO_TRACE(...)        ::Cajo::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define CAJO_INFO(...)         ::Cajo::Log::GetClientLogger()->info(__VA_ARGS__)
-#define CAJO_WARN(...)         ::Cajo::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define CAJO_ERROR(...)        ::Cajo::Log::GetClientLogger()->error(__VA_ARGS__)
-#define CAJO_FATAL(...)        ::Cajo::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define CAJO_TRACE(...)           ::Cajo::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define CAJO_INFO(...)            ::Cajo::Log::GetClientLogger()->info(__VA_ARGS__)
+#define CAJO_WARN(...)            ::Cajo::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define CAJO_ERROR(...)           ::Cajo::Log::GetClientLogger()->error(__VA_ARGS__)
+#define CAJO_Critical(...)        ::Cajo::Log::GetClientLogger()->critical(__VA_ARGS__)

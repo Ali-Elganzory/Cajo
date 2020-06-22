@@ -13,6 +13,8 @@ namespace Cajo {
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
+		virtual void UploadUniformMat4(const std::string& uniform, const glm::mat4& mat4) override;
+
 	private:
 		uint32_t m_RendererID;
 	};
