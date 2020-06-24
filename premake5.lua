@@ -106,6 +106,7 @@ project "Sandbox"
 	{
 		"Cajo/vendor/spdlog/include",
 		"Cajo/src",
+		"Cajo/vendor",
 		"%{IncludeDir.glm}"
 	}
 

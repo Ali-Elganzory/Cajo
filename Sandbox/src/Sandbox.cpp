@@ -1,6 +1,9 @@
 #include <Cajo.h>
 
+#include "ImGui/imgui.h"
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Cajo::Layer
 {
@@ -50,11 +53,11 @@ public:
 			
 			layout(location = 0) out vec4 color;
 
-			uniform vec4 u_Color;
+			uniform vec3 u_Color;
 			
 			void main()
 			{
-				color = u_Color;
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
@@ -92,15 +95,12 @@ public:
 		Cajo::Renderer::BeginScene(m_Camera);
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), { 0.1f, 0.1f, 0.1f });
+		m_FlatColorShader->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++)
 			for (int x = 0; x < 20; x++)
 			{
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), { 0.11f * x, 0.11f * y, 0.0f });
-				if (x % 2 == 0 && y % 2 != 0 || x % 2 != 0 && y % 2 == 0)
-					m_FlatColorShader->UploadUniformVec4("u_Color", { 0.8f, 0.3f, 0.4f, 1.0f });
-				else
-					m_FlatColorShader->UploadUniformVec4("u_Color", { 0.3f, 0.4f, 0.8f, 1.0f });
 				Cajo::Renderer::Submit(m_FlatColorShader, m_VertexArray, transform * scale);
 			}
 
@@ -109,7 +109,9 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-
+		ImGui::Begin("Checker Board Settings");
+		ImGui::ColorPicker3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(Cajo::Event& event) override
@@ -120,6 +122,7 @@ public:
 private:
 	std::shared_ptr<Cajo::Shader> m_FlatColorShader;
 	std::shared_ptr<Cajo::VertexArray> m_VertexArray;
+	glm::vec3 m_SquareColor;
 
 	Cajo::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

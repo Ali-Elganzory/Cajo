@@ -108,16 +108,46 @@ namespace Cajo {
 		glUseProgram(0);
 	}
 
-	void OpenGLShader::UploadUniformVec4(const std::string& uniform, const glm::vec4& vec4)
+	void OpenGLShader::UploadUniformInt(const std::string& uniform, const int value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
-		glUniform4f(location, vec4.x, vec4.y, vec4.z, vec4.w);
+		glUniform1i(location, value);
 	}
 
-	void OpenGLShader::UploadUniformMat4(const std::string& uniform, const glm::mat4& mat4)
+	void OpenGLShader::UploadUniformFloat(const std::string& uniform, const float value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
-		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4));
+		glUniform1f(location, value);
+	}
+
+	void OpenGLShader::UploadUniformFloat2(const std::string& uniform, const glm::vec2& value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniform2f(location, value.x, value.y);
+	}
+
+	void OpenGLShader::UploadUniformFloat3(const std::string& uniform, const glm::vec3& value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniform3f(location, value.x, value.y, value.z);
+	}
+
+	void OpenGLShader::UploadUniformFloat4(const std::string& uniform, const glm::vec4& value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniform4f(location, value.x, value.y, value.z, value.w);
+	}
+
+	void OpenGLShader::UploadUniformMat3(const std::string& uniform, const glm::mat3& value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(value));
+	}
+
+	void OpenGLShader::UploadUniformMat4(const std::string& uniform, const glm::mat4& value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 
 }
