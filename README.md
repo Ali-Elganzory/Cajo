@@ -15,3 +15,10 @@
   <img width="800" src="photos/colored_square.png"
        title="Colored rectangle">
 </p>
+
+- Checker board
+
+<p align="center">
+  <img width="800" src="photos/checker_board.png"
+       title="Checker Board">
+</p>
