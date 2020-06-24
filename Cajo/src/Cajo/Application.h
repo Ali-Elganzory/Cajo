@@ -7,6 +7,8 @@
 #include "Cajo/Events/Event.h"
 #include "Cajo/Events/ApplicationEvent.h"
 
+#include "Cajo/Core/Timestep.h"
+
 #include "Cajo/ImGui/ImGuiLayer.h"
 
 namespace Cajo {
@@ -31,11 +33,14 @@ namespace Cajo {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 
 		LayerStack m_LayerStack;
+
+		float m_LastFrameTime;
 
 	private:
 		static Application* s_Instance;

@@ -6,6 +6,8 @@
 #include "Cajo/Layer.h"
 #include "Cajo/Log.h"
 
+#include "Cajo/Core/Timestep.h"
+
 #include "Cajo/Input.h"
 #include "Cajo/KeyCodes.h"
 #include "Cajo/MouseCodes.h"

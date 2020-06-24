@@ -108,6 +108,12 @@ namespace Cajo {
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::UploadUniformVec4(const std::string& uniform, const glm::vec4& vec4)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniform4f(location, vec4.x, vec4.y, vec4.z, vec4.w);
+	}
+
 	void OpenGLShader::UploadUniformMat4(const std::string& uniform, const glm::mat4& mat4)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());

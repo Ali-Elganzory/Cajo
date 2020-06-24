@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Cajo/Core.h"
+#include "Cajo/Core/Timestep.h"
 #include "Cajo/Events/Event.h"
 
 namespace Cajo {
@@ -13,7 +14,7 @@ namespace Cajo {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
