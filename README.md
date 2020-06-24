@@ -5,7 +5,8 @@
 ### Supported Features
 - Event system
 - Layer stack
-- Platform agnostic Renderer API. Only, OpenGL API specific implementation is supported. <br /><br />
+- Platform agnostic Renderer API. Only, OpenGL API specific implementation is supported
+- Orthographic camera <br /><br />
 
 ### Photos
 - First rectangle using shaders
