@@ -35,72 +35,13 @@ public:
 		indexBuffer.reset(Cajo::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		////	Flat Color Shader		////
-		std::string flatColorShaderVertexSource = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
 
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-			
-			void main()
-			{
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
+		////	Sahders & Textures		////
+		m_FlatColorShader = Cajo::Shader::Create("assets/shaders/FlatColor.glsl");
+		m_TextureShader = Cajo::Shader::Create("assets/shaders/Texture.glsl");
 
-		std::string flatColorShaderFragmentSource = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			uniform vec3 u_Color;
-			
-			void main()
-			{
-				color = vec4(u_Color, 1.0);
-			}
-		)";
-
-		m_FlatColorShader.reset(Cajo::Shader::Create(flatColorShaderVertexSource, flatColorShaderFragmentSource));
-
-		////	Texture Shader		////
-		std::string textureShaderVertexSource = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TextureCoord;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TextureCoord;
-			
-			void main()
-			{
-				v_TextureCoord = a_TextureCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string textureShaderFragmentSource = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TextureCoord;
-			uniform sampler2D u_Texture;
-			
-			void main()
-			{
-				color = texture(u_Texture, v_TextureCoord);
-			}
-		)";
-
-		m_TextureShader.reset(Cajo::Shader::Create(textureShaderVertexSource, textureShaderFragmentSource));
-
-		m_Texture2D = Cajo::Texture2D::Create("assets/textures/checker_board.png");
+		m_CheckerBoardTexture = Cajo::Texture2D::Create("assets/textures/checker_board.png");
+		m_AvarisLogoTexture = Cajo::Texture2D::Create("assets/textures/avaris_logo.png");
 
 		m_TextureShader->Bind();
 		m_TextureShader->UploadUniformInt("u_Texture", 0);
@@ -147,7 +88,9 @@ public:
 				Cajo::Renderer::Submit(m_FlatColorShader, m_VertexArray, transform * scale);
 			}
 
-		m_Texture2D->Bind();
+		m_CheckerBoardTexture->Bind();
+		Cajo::Renderer::Submit(m_TextureShader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_AvarisLogoTexture->Bind();
 		Cajo::Renderer::Submit(m_TextureShader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Cajo::Renderer::EndScene();
@@ -170,7 +113,8 @@ private:
 	Cajo::Ref<Cajo::Shader> m_TextureShader;
 	Cajo::Ref<Cajo::VertexArray> m_VertexArray;
 
-	Cajo::Ref<Cajo::Texture2D> m_Texture2D;
+	Cajo::Ref<Cajo::Texture2D> m_CheckerBoardTexture;
+	Cajo::Ref<Cajo::Texture2D> m_AvarisLogoTexture;
 
 	Cajo::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

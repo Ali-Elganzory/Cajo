@@ -7,7 +7,8 @@ namespace Cajo {
 	class Shader 
 	{
 	public:
-		static Shader* Create(const std::string& vertexSource, const std::string& fragmentSource);
+		static Ref<Shader> Create(const std::string& filepath);
+		static Ref<Shader> Create(const std::string& vertexSource, const std::string& fragmentSource);
 		virtual ~Shader() {};
 
 		virtual void Bind() const = 0;

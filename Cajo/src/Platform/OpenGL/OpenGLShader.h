@@ -2,11 +2,15 @@
 
 #include "Cajo/Renderer/Shader.h"
 
+// TODO: REMOVE!
+typedef unsigned int GLenum;
+
 namespace Cajo {
 
 	class OpenGLShader : public Shader 
 	{
 	public:
+		OpenGLShader(const std::string& filepath);
 		OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource);
 		virtual ~OpenGLShader() override;
 
@@ -22,6 +26,11 @@ namespace Cajo {
 
 		virtual void UploadUniformMat3(const std::string& uniform, const glm::mat3& value) override;
 		virtual void UploadUniformMat4(const std::string& uniform, const glm::mat4& value) override;
+
+	private:
+		std::string ReadFile(const std::string& filepath) const;
+		std::unordered_map<GLenum, std::string> Preprocess(const std::string& source) const;
+		void Compile(std::unordered_map<GLenum, std::string> shaderSources);
 
 	private:
 		uint32_t m_RendererID;
