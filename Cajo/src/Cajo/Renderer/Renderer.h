@@ -13,7 +13,7 @@ namespace Cajo {
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
 
-		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform);
+		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform);
 
 		inline static RendererAPI::API GetCurrentAPI() { return RendererAPI::GetCurrentAPI(); };
 		inline static void SetCurrentAPI(RendererAPI::API api) { RendererAPI::SetCurrentAPI(api); };

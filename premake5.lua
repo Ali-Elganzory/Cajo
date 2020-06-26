@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Cajo/vendor/GLFW/include"
 IncludeDir["Glad"] = "Cajo/vendor/Glad/include"
 IncludeDir["ImGui"] = "Cajo/vendor/ImGui"
 IncludeDir["glm"] = "Cajo/vendor/glm"
+IncludeDir["stb_image"] = "Cajo/vendor/stb_image"
 
 include "Cajo/vendor/GLFW"
 include "Cajo/vendor/Glad"
@@ -39,6 +40,8 @@ project "Cajo"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -50,7 +53,8 @@ project "Cajo"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}",
 	}
 
 	links

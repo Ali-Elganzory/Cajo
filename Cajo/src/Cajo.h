@@ -20,6 +20,7 @@
 
 #include "Cajo/Renderer/Buffer.h"
 #include "Cajo/Renderer/Shader.h"
+#include "Cajo/Renderer/Texture.h"
 #include "Cajo/Renderer/VertexArray.h"
 
 #include "Cajo/Renderer/Camera.h"
