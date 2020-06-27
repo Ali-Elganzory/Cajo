@@ -12,16 +12,22 @@ namespace Cajo {
 	{
 		std::string source = ReadFile(filepath);
 		std::unordered_map<GLenum, std::string> shaderSources = Preprocess(source);
-
 		Compile(shaderSources);
+
+		//	Name extraction from filepath
+		auto postLastSlash = filepath.find_last_of("/\\");
+		postLastSlash = postLastSlash == std::string::npos ? 0 : postLastSlash + 1;
+		auto firstDot = filepath.find('.', 0);
+		auto length = firstDot == std::string::npos ? (filepath.size() - postLastSlash) : (firstDot - postLastSlash);
+		m_Name = filepath.substr(postLastSlash, length);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource)
+		: m_Name(name)
 	{
 		std::unordered_map<GLenum, std::string> shaderSources;
 		shaderSources[GL_VERTEX_SHADER] = vertexSource;
 		shaderSources[GL_FRAGMENT_SHADER] = fragmentSource;
-
 		Compile(shaderSources);
 	}
 
@@ -85,7 +91,7 @@ namespace Cajo {
 	std::string OpenGLShader::ReadFile(const std::string& filepath) const
 	{
 		std::string result;
-		std::ifstream in(filepath, std::ios::in, std::ios::binary);
+		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -135,8 +141,10 @@ namespace Cajo {
 	void OpenGLShader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> shadersIDs(shaderSources.size());
+		CAJO_CORE_ASSERT(shaderSources.size() <= 2, "Cannot support more than 2 shaders, currently.")
+		std::array<GLenum, 2> shadersIDs;
 
+		int shaderIndex = 0;
 		for (const auto& kv : shaderSources)
 		{
 			GLenum shaderType = kv.first;
@@ -166,7 +174,7 @@ namespace Cajo {
 			}
 
 			glAttachShader(program, shader);
-			shadersIDs.push_back(shader);
+			shadersIDs[shaderIndex++] = shader;
 		}
 
 		////		Program Linking		  ////

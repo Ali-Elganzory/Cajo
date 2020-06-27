@@ -11,11 +11,14 @@ namespace Cajo {
 	{
 	public:
 		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource);
+		OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource);
+
 		virtual ~OpenGLShader() override;
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
+
+		virtual const std::string& GetName() const override { return m_Name; }
 
 		virtual void UploadUniformInt(const std::string& uniform, const int value) override;
 
@@ -34,6 +37,7 @@ namespace Cajo {
 
 	private:
 		uint32_t m_RendererID;
+		std::string m_Name;
 	};
 
 }
