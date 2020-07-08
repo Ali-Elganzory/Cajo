@@ -9,7 +9,7 @@ class ExampleLayer : public Cajo::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example Layer"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Example Layer"), m_CameraController(1280.0 / 720.0)
 	{
 		////////////////////////////////////////////////
 		m_VertexArray = Cajo::VertexArray::Create();
@@ -50,32 +50,14 @@ public:
 
 	void OnUpdate(Cajo::Timestep ts) override
 	{
-		if (Cajo::Input::IsKeyPressed(CAJO_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		
-		else if (Cajo::Input::IsKeyPressed(CAJO_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
+		//	OnUpdate
+		m_CameraController.OnUpdate(ts);
 
-		if (Cajo::Input::IsKeyPressed(CAJO_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		else if (Cajo::Input::IsKeyPressed(CAJO_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-
-		if (Cajo::Input::IsKeyPressed(CAJO_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-
-		else if (Cajo::Input::IsKeyPressed(CAJO_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
-		/////////////////////////////////////////////////
+		//	Render
 		Cajo::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Cajo::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Cajo::Renderer::BeginScene(m_Camera);
+		Cajo::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 		m_FlatColorShader->Bind();
@@ -103,9 +85,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Cajo::Event& event) override
+	void OnEvent(Cajo::Event& e) override
 	{
-
+		m_CameraController.OnEvent(e);
 	}
 
 private:
@@ -116,11 +98,7 @@ private:
 	Cajo::Ref<Cajo::Texture2D> m_CheckerBoardTexture;
 	Cajo::Ref<Cajo::Texture2D> m_AvarisLogoTexture;
 
-	Cajo::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 2.0f;
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 65.0f;
+	Cajo::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor;
 };

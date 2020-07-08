@@ -6,7 +6,7 @@
 
 namespace Cajo {
 
-	Ref<Texture2D> Cajo::Texture2D::Create(const std::string& filepath)
+	Ref<Texture2D> Texture2D::Create(const std::string& filepath)
 	{
 		switch (Renderer::GetCurrentAPI())
 		{

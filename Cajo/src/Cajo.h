@@ -11,6 +11,7 @@
 #include "Cajo/Input.h"
 #include "Cajo/KeyCodes.h"
 #include "Cajo/MouseCodes.h"
+#include "Cajo/CameraController.h"
 
 #include "Cajo/ImGui/ImGuiLayer.h"
 
