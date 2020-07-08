@@ -12,7 +12,7 @@ public:
 		: Layer("Example Layer"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
 	{
 		////////////////////////////////////////////////
-		m_VertexArray.reset(Cajo::VertexArray::Create());
+		m_VertexArray = Cajo::VertexArray::Create();
 
 		float vertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -22,7 +22,7 @@ public:
 		};
 
 		Cajo::Ref<Cajo::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Cajo::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = Cajo::VertexBuffer::Create(vertices, sizeof(vertices));
 		Cajo::BufferLayout layout = {
 			{ Cajo::ShaderDataType::Float3, "a_Position" },
 			{ Cajo::ShaderDataType::Float2, "a_TextureCoord" },
@@ -32,7 +32,7 @@ public:
 
 		uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
 		Cajo::Ref<Cajo::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Cajo::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = Cajo::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 

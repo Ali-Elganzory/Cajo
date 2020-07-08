@@ -10,14 +10,14 @@ namespace Cajo {
 		OrthographicCamera(const float& left, const float& right, const float& bottom, const float& top);
 
 		void SetPosition(const glm::vec3& position) { m_Position = position; RecalculateViewProjectionMatrix(); }
-		const glm::vec3 GetPosition() const { return m_Position; }
+		const glm::vec3& GetPosition() const { return m_Position; }
 
 		void SetRotation(const float& rotation) { m_Rotation = rotation; RecalculateViewProjectionMatrix(); }
-		const float GetRotation() const { return m_Rotation; }
+		const float& GetRotation() const { return m_Rotation; }
 
-		const glm::mat4 GetProjectionMatrix() const { return m_ProjectionMatrix; }
-		const glm::mat4 GetViewMatrix() const { return m_ViewMatrix; }
-		const glm::mat4 GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
+		const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
+		const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
+		const glm::mat4& GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
 
 	private:
 		void RecalculateViewProjectionMatrix();
