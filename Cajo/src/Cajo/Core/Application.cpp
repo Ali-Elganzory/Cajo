@@ -2,7 +2,7 @@
 
 #include "Application.h"
 
-#include "Cajo/Log.h"
+#include "Cajo/Core/Log.h"
 
 #include "Cajo/Renderer/Renderer.h"
 

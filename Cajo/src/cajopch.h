@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Cajo/Log.h"
+#include "Cajo/Core/Log.h"
 
 #ifdef CAJO_PLATFORM_WINDOWS
 	#include <Windows.h>

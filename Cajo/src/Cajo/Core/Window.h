@@ -2,7 +2,8 @@
 
 #include "cajopch.h"
 
-#include "Cajo/Core.h"
+#include "Cajo/Core/Core.h"
+
 #include "Cajo/Events/Event.h"
 
 namespace Cajo {

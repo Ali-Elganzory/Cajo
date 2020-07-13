@@ -1,8 +1,7 @@
 #include "cajopch.h"
-
 #include "WindowsInput.h"
 
-#include "Cajo/Application.h"
+#include "Cajo/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Cajo {

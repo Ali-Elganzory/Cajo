@@ -6,7 +6,7 @@
 #include "examples/imgui_impl_opengl3.h"
 #include "examples/imgui_impl_glfw.h"
 
-#include "Cajo/Application.h"
+#include "Cajo/Core/Application.h"
 
 // TEMP
 #include <GLFW/glfw3.h>

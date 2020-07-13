@@ -1,8 +1,8 @@
 #include "cajopch.h"
 #include "CameraController.h"
 
-#include "Cajo/Input.h"
-#include "Cajo/KeyCodes.h"
+#include "Cajo/Core/Input.h"
+#include "Cajo/Core/KeyCodes.h"
 
 namespace Cajo {
 

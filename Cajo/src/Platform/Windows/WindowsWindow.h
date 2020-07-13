@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Cajo/Window.h"
+#include "Cajo/Core/Window.h"
+
 #include "Cajo/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

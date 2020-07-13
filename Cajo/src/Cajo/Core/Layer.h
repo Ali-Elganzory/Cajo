@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cajo/Core.h"
+#include "Cajo/Core/Core.h"
 #include "Cajo/Core/Timestep.h"
 #include "Cajo/Events/Event.h"
 

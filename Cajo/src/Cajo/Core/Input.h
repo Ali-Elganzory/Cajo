@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cajo/Core.h"
+#include "Cajo/Core/Core.h"
 
 namespace Cajo {
 

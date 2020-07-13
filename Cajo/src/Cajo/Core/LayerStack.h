@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Cajo/Core.h"
-#include "Cajo/Layer.h"
+#include "Cajo/Core/Core.h"
+#include "Cajo/Core/Layer.h"
 
 namespace Cajo {
 

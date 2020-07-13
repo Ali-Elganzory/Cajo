@@ -2,12 +2,12 @@
 
 #include "Core.h"
 
-#include "Window.h"
-#include "Cajo/LayerStack.h"
+#include "Cajo/Core/Window.h"
+#include "Cajo/Core/LayerStack.h"
+#include "Cajo/Core/Timestep.h"
+
 #include "Cajo/Events/Event.h"
 #include "Cajo/Events/ApplicationEvent.h"
-
-#include "Cajo/Core/Timestep.h"
 
 #include "Cajo/ImGui/ImGuiLayer.h"
 

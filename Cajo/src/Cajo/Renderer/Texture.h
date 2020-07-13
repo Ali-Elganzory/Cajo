@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Cajo/Core.h"
+#include "Cajo/Core/Core.h"
 
 namespace Cajo {
 

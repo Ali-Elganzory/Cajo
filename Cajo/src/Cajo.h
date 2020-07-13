@@ -2,16 +2,15 @@
 
 // To be used by Cajo apps
 
-#include "Cajo/Application.h"
-#include "Cajo/Layer.h"
-#include "Cajo/Log.h"
+#include "Cajo/Core/Application.h"
+#include "Cajo/Core/Layer.h"
+#include "Cajo/Core/Log.h"
 
 #include "Cajo/Core/Timestep.h"
 
-#include "Cajo/Input.h"
-#include "Cajo/KeyCodes.h"
-#include "Cajo/MouseCodes.h"
-#include "Cajo/CameraController.h"
+#include "Cajo/Core/Input.h"
+#include "Cajo/Core/KeyCodes.h"
+#include "Cajo/Core/MouseCodes.h"
 
 #include "Cajo/ImGui/ImGuiLayer.h"
 
@@ -25,8 +24,5 @@
 #include "Cajo/Renderer/VertexArray.h"
 
 #include "Cajo/Renderer/Camera.h"
-// -------------------------------------
-
-// --------		Entry Point		--------
-#include "Cajo/EntryPoint.h"
+#include "Cajo/Renderer/CameraController.h"
 // -------------------------------------

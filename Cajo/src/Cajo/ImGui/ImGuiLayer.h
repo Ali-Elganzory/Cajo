@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cajo/Layer.h"
+#include "Cajo/Core/Layer.h"
 
 #include "Cajo/Events/ApplicationEvent.h"
 #include "Cajo/Events/MouseEvent.h"

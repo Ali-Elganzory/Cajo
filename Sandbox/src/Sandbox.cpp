@@ -1,15 +1,18 @@
 #include <Cajo.h>
+#include "Cajo/Core/EntryPoint.h"
 
 #include "ImGui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Example2DLayer.h"
+
 class ExampleLayer : public Cajo::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example Layer"), m_CameraController(1280.0 / 720.0)
+		: Layer("Example Layer"), m_CameraController((float)(1280.0 / 720.0))
 	{
 		////////////////////////////////////////////////
 		m_VertexArray = Cajo::VertexArray::Create();
@@ -61,7 +64,7 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 		m_FlatColorShader->Bind();
-		m_FlatColorShader->UploadUniformFloat3("u_Color", m_SquareColor);
+		m_FlatColorShader->UploadUniformFloat4("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++)
 			for (int x = 0; x < 20; x++)
@@ -81,7 +84,7 @@ public:
 	virtual void OnImGuiRender() override
 	{
 		ImGui::Begin("Checker Board Settings");
-		ImGui::ColorPicker3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::ColorPicker4("Square Color", glm::value_ptr(m_SquareColor));
 		ImGui::End();
 	}
 
@@ -100,7 +103,7 @@ private:
 
 	Cajo::OrthographicCameraController m_CameraController;
 
-	glm::vec3 m_SquareColor;
+	glm::vec4 m_SquareColor = { 0.4f, 0.2f, 0.6f, 1.0f };
 };
 
 class Sandbox : public Cajo::Application
@@ -108,7 +111,7 @@ class Sandbox : public Cajo::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		PushLayer(new Example2DLayer("Example2DLayer"));
 		//PushOverlay(new Cajo::ImGuiLayer());
 	}
 
