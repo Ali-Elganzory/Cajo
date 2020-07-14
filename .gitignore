@@ -1,9 +1,8 @@
 # Directories
-.vs/
-bin/
-bin-int/
+**/bin/
+**/bin-int/
 
-# visual studio files
+# visual studio files and dirs
 .vs/
 **.sln
 **.vcxproj

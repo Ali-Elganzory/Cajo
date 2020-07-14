@@ -46,6 +46,41 @@ namespace Cajo {
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetInt(const std::string& uniform, const int value)
+	{
+		UploadUniformInt(uniform, value);
+	}
+
+	void OpenGLShader::SetFloat(const std::string& uniform, const float value)
+	{
+		UploadUniformFloat(uniform, value);
+	}
+
+	void OpenGLShader::SetFloat2(const std::string& uniform, const glm::vec2& value)
+	{
+		UploadUniformFloat2(uniform, value);
+	}
+
+	void OpenGLShader::SetFloat3(const std::string& uniform, const glm::vec3& value)
+	{
+		UploadUniformFloat3(uniform, value);
+	}
+
+	void OpenGLShader::SetFloat4(const std::string& uniform, const glm::vec4& value)
+	{
+		UploadUniformFloat4(uniform, value);
+	}
+
+	void OpenGLShader::SetMat3(const std::string& uniform, const glm::mat3& value)
+	{
+		UploadUniformMat3(uniform, value);
+	}
+
+	void OpenGLShader::SetMat4(const std::string& uniform, const glm::mat4& value)
+	{
+		UploadUniformMat4(uniform, value);
+	}
+
 	void OpenGLShader::UploadUniformInt(const std::string& uniform, const int value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
@@ -204,7 +239,10 @@ namespace Cajo {
 
 		// Always detach shaders after a successful link.
 		for (const auto& shader : shadersIDs)
+		{
 			glDetachShader(program, shader);
+			glDeleteShader(shader);
+		}
 
 		m_RendererID = program;
 	}

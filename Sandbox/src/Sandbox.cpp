@@ -47,7 +47,7 @@ public:
 		m_AvarisLogoTexture = Cajo::Texture2D::Create("assets/textures/avaris_logo.png");
 
 		m_TextureShader->Bind();
-		m_TextureShader->UploadUniformInt("u_Texture", 0);
+		m_TextureShader->SetInt("u_Texture", 0);
 		////////////////////////////////////////////////
 	}
 
@@ -64,7 +64,7 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 		m_FlatColorShader->Bind();
-		m_FlatColorShader->UploadUniformFloat4("u_Color", m_SquareColor);
+		m_FlatColorShader->SetFloat4("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++)
 			for (int x = 0; x < 20; x++)

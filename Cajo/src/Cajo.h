@@ -15,6 +15,7 @@
 #include "Cajo/ImGui/ImGuiLayer.h"
 
 // --------		Renderer		--------
+#include "Cajo/Renderer/Renderer2D.h"
 #include "Cajo/Renderer/Renderer.h"
 #include "Cajo/Renderer/RenderCommand.h"
 
