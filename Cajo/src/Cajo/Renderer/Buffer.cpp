@@ -1,8 +1,7 @@
 #include "cajopch.h"
-
 #include "Buffer.h"
 
-#include "Renderer.h"
+#include "Cajo/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
@@ -13,7 +12,7 @@ namespace Cajo {
 		switch (Renderer::GetCurrentAPI())
 		{
 		case RendererAPI::API::None:      CAJO_CORE_ASSERT(false, "RendererAPI::None is not supported yet."); return nullptr;
-		case RendererAPI::API::OpenGL:    return std::make_shared<OpenGLVertexBuffer>(vertices, size);
+		case RendererAPI::API::OpenGL:    return CreateRef<OpenGLVertexBuffer>(vertices, size);
 		}
 
 		CAJO_CORE_ASSERT(false, "Unknown RendererAPI!")
@@ -25,7 +24,7 @@ namespace Cajo {
 		switch (Renderer::GetCurrentAPI())
 		{
 		case RendererAPI::API::None:      CAJO_CORE_ASSERT(false, "RendererAPI::None is not supported yet."); return nullptr;
-		case RendererAPI::API::OpenGL:    return std::make_shared<OpenGLIndexBuffer>(indices, size);
+		case RendererAPI::API::OpenGL:    return CreateRef<OpenGLIndexBuffer>(indices, size);
 		}
 
 		CAJO_CORE_ASSERT(false, "Unknown RendererAPI!")

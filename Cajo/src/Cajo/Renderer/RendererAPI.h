@@ -1,8 +1,8 @@
 #pragma once
 
-#include <glm/glm.hpp>
+#include "Cajo/Renderer/VertexArray.h"
 
-#include "VertexArray.h"
+#include <glm/glm.hpp>
 
 namespace Cajo {
 
@@ -14,6 +14,8 @@ namespace Cajo {
 		};
 
 	public:
+		static Scope<RendererAPI> Create();
+
 		virtual void Init() = 0;
 		virtual void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) = 0;
 

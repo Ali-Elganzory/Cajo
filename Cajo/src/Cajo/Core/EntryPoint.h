@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Cajo/Core/Core.h"
+
 #ifdef CAJO_PLATFORM_WINDOWS
 
 extern Cajo::Application* Cajo::CreateApplication();

@@ -1,6 +1,6 @@
 #include "Example2DLayer.h"
 
-#include "ImGui/imgui.h"
+#include <ImGui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>

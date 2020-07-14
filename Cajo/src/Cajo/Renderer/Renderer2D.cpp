@@ -1,9 +1,9 @@
 #include "cajopch.h"
 #include "Renderer2D.h"
 
-#include "RenderCommand.h"
-#include "VertexArray.h"
-#include "Shader.h"
+#include "Cajo/Renderer/RenderCommand.h"
+#include "Cajo/Renderer/VertexArray.h"
+#include "Cajo/Renderer/Shader.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -12,8 +12,8 @@ namespace Cajo {
 	struct Renderer2DStorage
 	{
 		Ref<VertexArray> VertexArray;
-		Ref<Shader> FlatColorShader;
-		Ref<Shader> TextureShader;
+		Ref<Shader> ColorTextureShader;
+		Ref<Texture2D> WhiteTexture;
 	};
 
 	static Renderer2DStorage* s_Data;
@@ -43,11 +43,13 @@ namespace Cajo {
 		Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		s_Data->VertexArray->SetIndexBuffer(indexBuffer);
 
-		s_Data->FlatColorShader = Shader::Create("assets/shaders/FlatColor.glsl");
+		s_Data->ColorTextureShader = Shader::Create("assets/shaders/ColorTexture.glsl");
+		s_Data->ColorTextureShader->Bind();
+		s_Data->ColorTextureShader->SetInt("u_Texture", 0);
 
-		s_Data->TextureShader = Shader::Create("assets/shaders/Texture.glsl");
-		s_Data->TextureShader->Bind();
-		s_Data->TextureShader->SetInt("u_Texture", 0);
+		s_Data->WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteData = 0xFFFFFFFF;
+		s_Data->WhiteTexture->SetData(&whiteData, sizeof(uint32_t));
 	}
 
 	void Renderer2D::Shutdown()
@@ -57,11 +59,8 @@ namespace Cajo {
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
-		s_Data->TextureShader->Bind();
-		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
+		s_Data->ColorTextureShader->Bind();
+		s_Data->ColorTextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
@@ -75,11 +74,11 @@ namespace Cajo {
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetFloat4("u_Color", color);
+		s_Data->ColorTextureShader->SetFloat4("u_Color", color);
+		s_Data->WhiteTexture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_Data->FlatColorShader->SetMat4("u_Transform", transform);
+		s_Data->ColorTextureShader->SetMat4("u_Transform", transform);
 
 		s_Data->VertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->VertexArray);
@@ -92,12 +91,11 @@ namespace Cajo {
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
 	{
-		s_Data->TextureShader->Bind();
+		s_Data->ColorTextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		texture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_Data->TextureShader->SetMat4("u_Transform", transform);
-
-		texture->Bind();
+		s_Data->ColorTextureShader->SetMat4("u_Transform", transform);
 
 		s_Data->VertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->VertexArray);

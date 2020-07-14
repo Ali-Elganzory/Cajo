@@ -2,20 +2,6 @@
 
 #include <memory>
 
-#ifdef CAJO_PLATFORM_WINDOWS
-	#if CAJO_DYNAMIC_LINK
-		#ifdef CAJO_BUILD_DLL 
-			#define CAJO_API __declspec(dllexport)
-		#else
-			#define CAJO_API __declspec(dllimport)
-		#endif
-	#else
-		#define CAJO_API
-	#endif
-#else
-	#error Cajo only supports Windows.
-#endif
-
 #ifdef CAJO_DEBUG
 	#define CAJO_ENABLE_ASSERTS
 #endif

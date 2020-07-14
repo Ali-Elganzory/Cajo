@@ -1,7 +1,7 @@
 #include "cajopch.h"
-#include "Renderer.h"
 
-#include "Renderer2D.h"
+#include "Cajo/Renderer/Renderer.h"
+#include "Cajo/Renderer/Renderer2D.h"
 
 namespace Cajo {
 
@@ -11,6 +11,11 @@ namespace Cajo {
 	{
 		RenderCommand::Init();
 		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

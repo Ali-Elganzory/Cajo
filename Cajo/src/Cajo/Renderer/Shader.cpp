@@ -1,7 +1,7 @@
 #include "cajopch.h"
 #include "Shader.h"
 
-#include "Renderer.h"
+#include "Cajo/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLShader.h"
 

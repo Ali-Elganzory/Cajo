@@ -1,5 +1,4 @@
 #include "cajopch.h"
-
 #include "OpenGLVertexArray.h"
 
 #include <glad/glad.h>

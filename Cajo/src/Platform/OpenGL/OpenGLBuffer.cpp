@@ -1,5 +1,4 @@
 #include "cajopch.h"
-
 #include "OpenGLBuffer.h"
 
 #include <Glad/glad.h>

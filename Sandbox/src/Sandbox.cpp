@@ -1,7 +1,7 @@
 #include <Cajo.h>
-#include "Cajo/Core/EntryPoint.h"
+#include <Cajo/Core/EntryPoint.h>
 
-#include "ImGui/imgui.h"
+#include <ImGui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>

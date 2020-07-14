@@ -2,6 +2,7 @@
 #include "WindowsInput.h"
 
 #include "Cajo/Core/Application.h"
+
 #include <GLFW/glfw3.h>
 
 namespace Cajo {

@@ -1,5 +1,4 @@
 #include "cajopch.h"
-
 #include "Layer.h"
 
 namespace Cajo {

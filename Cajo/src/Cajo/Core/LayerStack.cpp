@@ -1,13 +1,7 @@
 #include "cajopch.h"
-
 #include "LayerStack.h"
 
 namespace Cajo {
-
-	LayerStack::LayerStack() 
-	{
-	}
-
 
 	LayerStack::~LayerStack()
 	{

@@ -2,11 +2,12 @@
 
 #include "Cajo/Core/Core.h"
 #include "Cajo/Core/Timestep.h"
+
 #include "Cajo/Events/Event.h"
 
 namespace Cajo {
 
-	class CAJO_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

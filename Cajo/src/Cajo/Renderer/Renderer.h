@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RenderCommand.h"
+#include "Cajo/Renderer/RenderCommand.h"
 
-#include "Camera.h"
-#include "Shader.h"
+#include "Cajo/Renderer/Camera.h"
+#include "Cajo/Renderer/Shader.h"
 
 namespace Cajo {
 
@@ -11,6 +11,8 @@ namespace Cajo {
 	{
 	public:
 		static void Init();
+		static void Shutdown();
+
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
 		static void BeginScene(const OrthographicCamera& camera);

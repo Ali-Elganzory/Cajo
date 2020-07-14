@@ -1,25 +1,22 @@
 #include "cajopch.h"
-
 #include "WindowsWindow.h"
 
 #include "Cajo/Events/ApplicationEvent.h"
 #include "Cajo/Events/MouseEvent.h"
 #include "Cajo/Events/KeyEvent.h"
 
-#include "Platform/OpenGL/OpenGLContext.h"
-
 namespace Cajo {
 
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 	
 	static void GLFWErrorCallback(int errcode, const char* error)
 	{
 		CAJO_CORE_ERROR("GLFW error {0}: {1}", errcode, error);
 	}
 
-	Window* Window::Create(const WindowProps& props)
+	Scope<Window> Window::Create(const WindowProps& props)
 	{
-		return new WindowsWindow(props);
+		return CreateScope<WindowsWindow>(props);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
@@ -42,20 +39,17 @@ namespace Cajo {
 		CAJO_CORE_INFO("Creating window {0}: ({1}, {2})", props.Title, props.Width, props.Height);
 
 
-		if (!s_GLFWInitialized)
+		if (s_GLFWWindowCount == 0)
 		{
-			// TODO: terminate glfw on system shutdown
 			int success = glfwInit();
 			CAJO_CORE_ASSERT(success, "Couldn't initialize GLFW!");
-
 			glfwSetErrorCallback(GLFWErrorCallback);
-
-			s_GLFWInitialized = true;
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		
-		m_Context = CreateScope<OpenGLContext>(m_Window);
+		++s_GLFWWindowCount;
+
+		m_Context = GraphicsContext::Create(m_Window);
 		m_Context->Init();
 		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -160,6 +154,12 @@ namespace Cajo {
 	void WindowsWindow::Shutdown()
 	{
 		glfwDestroyWindow(m_Window);
+		--s_GLFWWindowCount;
+
+		if (s_GLFWWindowCount == 0)
+		{
+			glfwTerminate();
+		}
 	}
 
 	void WindowsWindow::OnUpdate()
