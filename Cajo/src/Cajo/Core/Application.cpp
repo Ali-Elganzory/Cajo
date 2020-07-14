@@ -1,19 +1,15 @@
 #include "cajopch.h"
-
 #include "Application.h"
-
-#include "Cajo/Core/Log.h"
 
 #include "Cajo/Renderer/Renderer.h"
 
-#include "Input.h"
-#include "KeyCodes.h"
+#include "Cajo/Core/Log.h"
+#include "Cajo/Core/Input.h"
+#include "Cajo/Core/KeyCodes.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Cajo {
-
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
@@ -23,12 +19,17 @@ namespace Cajo {
 		s_Instance = this;
 
 		m_Window.reset(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetEventCallback(CAJO_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
+	}
+
+	Application::~Application()
+	{
+		Renderer::Shutdown();
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -44,8 +45,8 @@ namespace Cajo {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(CAJO_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(CAJO_BIND_EVENT_FN(Application::OnWindowResize));
 		
 		//CAJO_CORE_TRACE("{0}", e);
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )

@@ -2,6 +2,8 @@
 
 // To be used by Cajo apps
 
+#include "Cajo/Core/Core.h"
+
 #include "Cajo/Core/Application.h"
 #include "Cajo/Core/Layer.h"
 #include "Cajo/Core/Log.h"

@@ -17,10 +17,8 @@ public:
 
 private:
 	Cajo::OrthographicCameraController m_CameraController;
-
-	//	TODO: move into renderer
-	Cajo::Ref<Cajo::Shader> m_FlatColorShader;
-	Cajo::Ref<Cajo::VertexArray> m_VertexArray;
+	
+	Cajo::Ref<Cajo::Texture2D> m_AvarisLogoTexture;
 
 	glm::vec4 m_SquareColor = { 0.4f, 0.2f, 0.6f, 1.0f };
 };

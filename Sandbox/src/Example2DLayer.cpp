@@ -12,7 +12,7 @@ Example2DLayer::Example2DLayer(const std::string& name)
 
 void Example2DLayer::OnAttach()
 {
-	
+	m_AvarisLogoTexture = Cajo::Texture2D::Create("assets/textures/avaris_logo.png");
 }
 
 void Example2DLayer::OnDetach()
@@ -29,8 +29,10 @@ void Example2DLayer::OnUpdate(Cajo::Timestep ts)
 	Cajo::RenderCommand::Clear();
 
 	Cajo::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	Cajo::Renderer2D::DrawQuad({ -0.5f,  0.5f }, { 1.0f, 1.0f }, m_SquareColor);
-	Cajo::Renderer2D::DrawQuad({  1.0f, -1.0f }, { 1.5f, 1.5f }, m_SquareColor);
+	Cajo::Renderer2D::DrawQuad({ -0.5f,  0.5f, 0.8 }, { 1.0f, 1.0f }, m_SquareColor);
+	Cajo::Renderer2D::DrawQuad({  1.0f, -1.0f, 0.8 }, { 1.5f, 1.5f }, m_SquareColor);
+	Cajo::Renderer2D::DrawQuad({  1.5f,  1.5f, 0.5 }, { 4.5f, 4.5f }, { 1.0f,1.0f,1.0f,1.0f });
+	Cajo::Renderer2D::DrawQuad({  1.5f,  1.5f, 0.6 }, { 4.5f, 4.5f }, m_AvarisLogoTexture);
 	Cajo::Renderer2D::EndScene();
 }
 
