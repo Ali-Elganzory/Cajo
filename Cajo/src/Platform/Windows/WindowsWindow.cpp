@@ -1,9 +1,13 @@
 #include "cajopch.h"
 #include "WindowsWindow.h"
 
+#include "Cajo/Core/Input.h"
+
 #include "Cajo/Events/ApplicationEvent.h"
 #include "Cajo/Events/MouseEvent.h"
 #include "Cajo/Events/KeyEvent.h"
+
+#include "Cajo/Renderer/Renderer.h"
 
 namespace Cajo {
 
@@ -46,6 +50,11 @@ namespace Cajo {
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 
+		#if defined(CAJO_DEBUG)
+			if (Renderer::GetCurrentAPI() == RendererAPI::API::OpenGL)
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+		#endif
+
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		++s_GLFWWindowCount;
 
@@ -82,19 +91,19 @@ namespace Cajo {
 			{
 				case GLFW_PRESS:
 				{
-					KeyPressedEvent event(key, 0);
+					KeyPressedEvent event(static_cast<KeyCode>(key), 0);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					KeyReleasedEvent event(key);
+					KeyReleasedEvent event(static_cast<KeyCode>(key));
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					KeyPressedEvent event(key, 1);
+					KeyPressedEvent event(static_cast<KeyCode>(key), 1);
 					data.EventCallback(event);
 					break;
 				}
@@ -103,15 +112,15 @@ namespace Cajo {
 			}
 		});
 
-		glfwSetCharCallback(m_Window, [](GLFWwindow * window, unsigned int keycode)
+		glfwSetCharCallback(m_Window, [](GLFWwindow * window, unsigned int keyCode)
 		{
 			WindowData& data = *(WindowData*)(glfwGetWindowUserPointer(window));
 				
-			KeyTypedEvent event(keycode);
+			KeyTypedEvent event(static_cast<KeyCode>(keyCode));
 			data.EventCallback(event);
 		});
 
-		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow * window, int key, int action, int mods)
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow * window, int button, int action, int mods)
 		{
 			WindowData& data = *(WindowData*)(glfwGetWindowUserPointer(window));
 			
@@ -119,13 +128,13 @@ namespace Cajo {
 			{
 				case GLFW_PRESS:
 				{
-					MouseButtonPressedEvent event(key);
+					MouseButtonPressedEvent event(static_cast<MouseCode>(button));
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					MouseButtonReleasedEvent event(key);
+					MouseButtonReleasedEvent event(static_cast<MouseCode>(button));
 					data.EventCallback(event);
 					break;
 				}

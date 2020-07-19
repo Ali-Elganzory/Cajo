@@ -15,6 +15,8 @@
 
 #include "Cajo/Core/Log.h"
 
+#include "Cajo/Debug/Instrumentor.h"
+
 #ifdef CAJO_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // CAJO_PLATFORM_WINDOWS

@@ -22,6 +22,7 @@ namespace Cajo {
 		m_Window->SetEventCallback(CAJO_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
+		m_LastFrameTime = (float)glfwGetTime();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
