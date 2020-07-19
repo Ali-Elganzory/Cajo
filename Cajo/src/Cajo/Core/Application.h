@@ -11,6 +11,8 @@
 
 #include "Cajo/ImGui/ImGuiLayer.h"
 
+int main(int argc, char** argv);
+
 namespace Cajo {
 
 	class Application
@@ -18,8 +20,6 @@ namespace Cajo {
 	public:
 		Application();
 		virtual ~Application();
-
-		void Run();
 
 		void OnEvent(Event& e);
 
@@ -31,11 +31,13 @@ namespace Cajo {
 		inline static Application& Get() { return *s_Instance; }
 
 	private:
+		void Run();
+
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
 	private:
-		std::unique_ptr<Window> m_Window;
+		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		bool m_Minimized = false;
@@ -46,6 +48,7 @@ namespace Cajo {
 
 	private:
 		static Application* s_Instance;
+		friend int ::main(int argc, char** argv);
 	};
 
 	// To be defined by Client
