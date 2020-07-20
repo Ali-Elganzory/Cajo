@@ -47,7 +47,7 @@ void Example2DLayer::OnUpdate(Cajo::Timestep ts)
 		for ( ; i < 5; ++i)
 			for (int j = 0; j < 20; ++j)
 				Cajo::Renderer2D::DrawQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.4f, 1.0f });
-		for ( ; i < 10; ++i)
+		/*for ( ; i < 10; ++i)
 			for (int j = 0; j < 20; ++j)
 				Cajo::Renderer2D::DrawQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, m_CheckboardTexture);
 		for (; i < 15; ++i)
@@ -55,7 +55,7 @@ void Example2DLayer::OnUpdate(Cajo::Timestep ts)
 				Cajo::Renderer2D::DrawRotatedQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, 0.785398f, { 0.8f, 0.2f, 0.4f, 1.0f });
 		for (; i < 20; ++i)
 			for (int j = 0; j < 20; ++j)
-				Cajo::Renderer2D::DrawRotatedQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, 0.785398f, m_CheckboardTexture);
+				Cajo::Renderer2D::DrawRotatedQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, 0.785398f, m_CheckboardTexture);*/
 		Cajo::Renderer2D::EndScene();
 	}
 }
