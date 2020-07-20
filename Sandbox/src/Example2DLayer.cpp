@@ -12,6 +12,7 @@ Example2DLayer::Example2DLayer(const std::string& name)
 
 void Example2DLayer::OnAttach()
 {
+	m_CheckboardTexture = Cajo::Texture2D::Create("assets/textures/checker_board.png");
 	m_AvarisLogoTexture = Cajo::Texture2D::Create("assets/textures/avaris_logo.png");
 }
 
@@ -21,26 +22,53 @@ void Example2DLayer::OnDetach()
 
 void Example2DLayer::OnUpdate(Cajo::Timestep ts)
 {
+	CAJO_PROFILE_FUNCTION();
+
 	//	OnUpdate
-	m_CameraController.OnUpdate(ts);
+	{
+		CAJO_PROFILE_SCOPE("Camera Update");
+		m_CameraController.OnUpdate(ts);
+	}
 
 	//	Render
-	Cajo::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-	Cajo::RenderCommand::Clear();
+	{
+		CAJO_PROFILE_SCOPE("Renderer Prep");
 
-	Cajo::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	Cajo::Renderer2D::DrawQuad({ -0.5f,  0.5f, 0.8 }, { 1.0f, 1.0f }, m_SquareColor);
-	Cajo::Renderer2D::DrawQuad({  1.0f, -1.0f, 0.8 }, { 1.5f, 1.5f }, m_SquareColor);
-	Cajo::Renderer2D::DrawQuad({  1.5f,  1.5f, 0.5 }, { 4.5f, 4.5f }, { 1.0f,1.0f,1.0f,1.0f });
-	Cajo::Renderer2D::DrawQuad({  1.5f,  1.5f, 0.6 }, { 4.5f, 4.5f }, m_AvarisLogoTexture);
-	Cajo::Renderer2D::EndScene();
+		Cajo::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		Cajo::RenderCommand::Clear();
+	}
+
+	int i = 0;
+
+	{
+		CAJO_PROFILE_SCOPE("Renderer Draw 20 x 20 Quads");
+
+		Cajo::Renderer2D::BeginScene(m_CameraController.GetCamera());
+		for ( ; i < 5; ++i)
+			for (int j = 0; j < 20; ++j)
+				Cajo::Renderer2D::DrawQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.4f, 1.0f });
+		for ( ; i < 10; ++i)
+			for (int j = 0; j < 20; ++j)
+				Cajo::Renderer2D::DrawQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, m_CheckboardTexture);
+		for (; i < 15; ++i)
+			for (int j = 0; j < 20; ++j)
+				Cajo::Renderer2D::DrawRotatedQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, 0.785398f, { 0.8f, 0.2f, 0.4f, 1.0f });
+		for (; i < 20; ++i)
+			for (int j = 0; j < 20; ++j)
+				Cajo::Renderer2D::DrawRotatedQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, 0.785398f, m_CheckboardTexture);
+		Cajo::Renderer2D::EndScene();
+	}
 }
 
 void Example2DLayer::OnImGuiRender()
 {
-	ImGui::Begin("Checker Board Settings");
-	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-	ImGui::End();
+	{
+		CAJO_PROFILE_SCOPE("OnImGuiRender");
+
+		ImGui::Begin("Checker Board Settings");
+		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
+	}
 }
 
 void Example2DLayer::OnEvent(Cajo::Event& event)

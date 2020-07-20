@@ -18,6 +18,7 @@ public:
 private:
 	Cajo::OrthographicCameraController m_CameraController;
 	
+	Cajo::Ref<Cajo::Texture2D> m_CheckboardTexture;
 	Cajo::Ref<Cajo::Texture2D> m_AvarisLogoTexture;
 
 	glm::vec4 m_SquareColor = { 0.4f, 0.2f, 0.6f, 1.0f };

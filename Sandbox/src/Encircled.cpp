@@ -62,13 +62,13 @@ void Encircled::OnUpdate(Cajo::Timestep ts)
 		CAJO_PROFILE_SCOPE("Encircled::Render drawing");
 
 		Cajo::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		Cajo::Renderer2D::DrawQuad({ m_PlayerPos.x, m_PlayerPos.y, 0.001f }, m_PlayerScale, m_CircleTexture, m_PlayerColor);
+		Cajo::Renderer2D::DrawQuad({ m_PlayerPos.x, m_PlayerPos.y, 0.001f }, m_PlayerScale, m_CircleTexture, 1.0f, m_PlayerColor);
 
 		uint32_t index = 0;
 		for (auto& particle : m_Particles)
-			Cajo::Renderer2D::DrawQuad({ particle.GetPos().x, particle.GetPos().y, 0.01f * ++index }, { m_ParticleScale, m_ParticleScale }, m_CircleTexture, { 0.4f, 0.2f, 0.6f, 1.0f });
+			Cajo::Renderer2D::DrawQuad({ particle.GetPos().x, particle.GetPos().y, 0.01f * ++index }, { m_ParticleScale, m_ParticleScale }, m_CircleTexture, 1.0f, { 0.4f, 0.2f, 0.6f, 1.0f });
 		for (auto& particle : m_ExplosionParticles)
-			Cajo::Renderer2D::DrawQuad({ particle.GetPos().x, particle.GetPos().y, 0.01f * ++index }, { m_ExplosionParticleScale, m_ExplosionParticleScale }, m_CircleTexture, particle.GetColor());
+			Cajo::Renderer2D::DrawQuad({ particle.GetPos().x, particle.GetPos().y, 0.01f * ++index }, { m_ExplosionParticleScale, m_ExplosionParticleScale }, m_CircleTexture, 1.0f, particle.GetColor());
 
 		Cajo::Renderer2D::EndScene();
 	}
