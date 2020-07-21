@@ -44,13 +44,13 @@ void Example2DLayer::OnUpdate(Cajo::Timestep ts)
 		CAJO_PROFILE_SCOPE("Renderer Draw 20 x 20 Quads");
 
 		Cajo::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		for ( ; i < 5; ++i)
-			for (int j = 0; j < 20; ++j)
+		for ( ; i < 25; ++i)
+			for (int j = 0; j < 100; ++j)
 				Cajo::Renderer2D::DrawQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.4f, 1.0f });
-		/*for ( ; i < 10; ++i)
-			for (int j = 0; j < 20; ++j)
+		for ( ; i < 50; ++i)
+			for (int j = 0; j < 100; ++j)
 				Cajo::Renderer2D::DrawQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, m_CheckboardTexture);
-		for (; i < 15; ++i)
+		/*for (; i < 15; ++i)
 			for (int j = 0; j < 20; ++j)
 				Cajo::Renderer2D::DrawRotatedQuad({ 1.5f * j, 1.5f * i, 0.0f }, { 1.0f, 1.0f }, 0.785398f, { 0.8f, 0.2f, 0.4f, 1.0f });
 		for (; i < 20; ++i)

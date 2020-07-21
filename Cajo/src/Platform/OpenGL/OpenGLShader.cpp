@@ -50,6 +50,11 @@ namespace Cajo {
 		UploadUniformInt(uniform, value);
 	}
 
+	void OpenGLShader::SetIntArray(const std::string& uniform, const int32_t* values, const uint32_t& count)
+	{
+		UploadIntArray(uniform, values, count);
+	}
+
 	void OpenGLShader::SetFloat(const std::string& uniform, const float value)
 	{
 		UploadUniformFloat(uniform, value);
@@ -84,6 +89,12 @@ namespace Cajo {
 	{
 		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
 		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::UploadIntArray(const std::string& uniform, const int32_t* values, const uint32_t& count)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, uniform.c_str());
+		glUniform1iv(location, count, values);
 	}
 
 	void OpenGLShader::UploadUniformFloat(const std::string& uniform, const float value)

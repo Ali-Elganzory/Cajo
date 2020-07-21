@@ -21,6 +21,7 @@ namespace Cajo {
 		virtual const std::string& GetName() const override { return m_Name; }
 
 		virtual void SetInt(const std::string& uniform, const int value) override;
+		virtual void SetIntArray(const std::string& uniform, const int32_t* values, const uint32_t& count) override;
 
 		virtual void SetFloat(const std::string& uniform, const float value) override;
 		virtual void SetFloat2(const std::string& uniform, const glm::vec2& value) override;
@@ -32,6 +33,7 @@ namespace Cajo {
 
 		//	Upload uniform
 		void UploadUniformInt(const std::string& uniform, const int value);
+		void UploadIntArray(const std::string& uniform, const int32_t* values, const uint32_t& count);
 
 		void UploadUniformFloat(const std::string& uniform, const float value);
 		void UploadUniformFloat2(const std::string& uniform, const glm::vec2& value);

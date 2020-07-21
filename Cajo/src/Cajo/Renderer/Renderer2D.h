@@ -13,6 +13,8 @@ namespace Cajo {
 
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
+		
+		static bool IsBatchFull();
 		static void Flush();
 
 		// Elementry
