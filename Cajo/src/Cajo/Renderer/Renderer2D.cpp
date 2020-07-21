@@ -15,6 +15,7 @@ namespace Cajo {
 		glm::vec4 Color;
 		glm::vec2 TextureCoord;
 		float     TextureSlot;
+		float     TileFactor;
 	};
 
 	struct Renderer2DData
@@ -48,6 +49,7 @@ namespace Cajo {
 			{ ShaderDataType::Float4, "a_Color" },
 			{ ShaderDataType::Float2, "a_TextureCoord" },
 			{ ShaderDataType::Float,  "a_TextureSlot" },
+			{ ShaderDataType::Float,  "a_TileFactor" },
 		};
 		s_Data.QuadVertexBuffer->SetLayout(layout);
 		s_Data.QuadVertexArray->AddVertexBuffer(s_Data.QuadVertexBuffer);
@@ -138,29 +140,34 @@ namespace Cajo {
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
 		const float textureSlot = 0.0f;	// White texture [default texture]
+		const float tileFactor = 1.0f;
 
 		s_Data.QuadVertexBufferPtr->Position        = position;
 		s_Data.QuadVertexBufferPtr->Color           = color;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 0.0f, 0.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadVertexBufferPtr->Position        = { position.x + size.x, position.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color           = color;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 1.0f, 0.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadVertexBufferPtr->Position        = { position.x + size.x, position.y + size.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color           = color;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 1.0f, 1.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadVertexBufferPtr->Position        = { position.x, position.y + size.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color           = color;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 0.0f, 1.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadIndexCount += 6;
@@ -198,24 +205,28 @@ namespace Cajo {
 		s_Data.QuadVertexBufferPtr->Color           = tintColor;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 0.0f, 0.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadVertexBufferPtr->Position        = { position.x + size.x, position.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color           = tintColor;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 1.0f, 0.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadVertexBufferPtr->Position        = { position.x + size.x, position.y + size.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color           = tintColor;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 1.0f, 1.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadVertexBufferPtr->Position        = { position.x, position.y + size.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color           = tintColor;
 		s_Data.QuadVertexBufferPtr->TextureCoord    = { 0.0f, 1.0f };
 		s_Data.QuadVertexBufferPtr->TextureSlot     = textureSlot;
+		s_Data.QuadVertexBufferPtr->TileFactor      = tileFactor;
 		++s_Data.QuadVertexBufferPtr;
 
 		s_Data.QuadIndexCount += 6;
