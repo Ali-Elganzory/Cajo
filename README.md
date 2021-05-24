@@ -22,3 +22,17 @@
   <img width="800" src="photos/checker_board.png"
        title="Checker Board">
 </p>
+
+- Renderer - Bitmap Test
+
+<p align="center">
+  <img width="800" src="photos/2d_renderer_test.png"
+       title="Bitmap">
+</p>
+
+- Renderer - Batch Test
+
+<p align="center">
+  <img width="800" src="photos/pre-batching_testing.png"
+       title="Batch">
+</p>
