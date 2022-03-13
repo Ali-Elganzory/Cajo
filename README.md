@@ -36,3 +36,7 @@
   <img width="800" src="photos/pre-batching_testing.png"
        title="Batch">
 </p>
+
+
+### Acknowledgment
+Thankful to [Yan Chernikov](https://www.youtube.com/c/TheChernoProject) for his amazing videos from which I learned a lot!
